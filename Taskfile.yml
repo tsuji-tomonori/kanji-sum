@@ -1,0 +1,38 @@
+version: "3"
+
+tasks:
+  init:
+    cmds:
+      - python -m venv .venv
+      - npm install
+      - npm build
+  
+  env-build:
+    cmds:
+      - pip install -r requirements.txt
+
+  diff:
+    cmds:
+      - npm run build
+      - cdk diff
+
+  deploy:
+    cmds:
+      - task: diff
+      - cdk deploy --all
+
+  put-table:
+    cmds:
+      - python batch/create_hiragana_katakana_database.py
+      - python batch/put_kanji_data.py "hiragana_katakana_database.csv"
+      - python batch/put_kanji_data.py "kanji_database.csv"
+  
+  web-start:
+    cmds:
+      - npm start
+  
+  check:
+    cmds:
+      # - black .
+      - ruff check .
+      - mypy api batch cdk
