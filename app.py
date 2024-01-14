@@ -36,7 +36,7 @@ KanjiApiStack(
         region="ap-northeast-1",
     ),
     cross_region_references=True,
-    distribution_domain_name=stack.static.distribution.distribution_domain_name,
+    distribution_domain_name=stack.static.distribution.attr_domain_name,
 )
 
 Tags.of(app).add("Project", project)

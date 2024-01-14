@@ -1,8 +1,6 @@
 from typing import Any, Self
 
-import aws_cdk as cdk
 from aws_cdk import aws_apigateway as apigw
-from aws_cdk import aws_logs as logs
 from constructs import Construct
 
 from cdk.paramater import build_name
@@ -31,12 +29,4 @@ class ApigwConstruct(Construct):
                 logging_level=apigw.MethodLoggingLevel.ERROR,
                 stage_name="v1",
             ),
-        )
-
-        self.logs = logs.LogGroup(
-            scope=self,
-            id="logs",
-            log_group_name=f"API-Gateway-Execution-Logs_{self.api.rest_api_id}/{self.api.deployment_stage.stage_name}",
-            retention=logs.RetentionDays.THREE_MONTHS,
-            removal_policy=cdk.RemovalPolicy.DESTROY,
         )
