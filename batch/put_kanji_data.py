@@ -27,7 +27,7 @@ def merge_duplicates(items: list[dict[str, str]]) -> dict[str, Any]:
 
 args = sys.argv[1:]
 path = Path.cwd() / "data" / args[0]
-dynamodb = boto3.resource("dynamodb")
+dynamodb = boto3.resource("dynamodb", region_name="us-east-1")
 table = dynamodb.Table("kanji-dynamodb-database")
 
 with table.batch_writer() as batch:

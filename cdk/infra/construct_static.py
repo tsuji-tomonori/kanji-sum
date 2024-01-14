@@ -39,12 +39,14 @@ class StaticConstruct(Construct):
             self,
             "distribution",
             distribution_config=cloudfront.CfnDistribution.DistributionConfigProperty(
-                origins=[cloudfront.CfnDistribution.OriginProperty(
-                    domain_name=self.bucket.bucket_regional_domain_name,
-                    id=self.bucket.bucket_name,
-                    origin_access_control_id=self.oac.attr_id,
-                    s3_origin_config={},
-                )],
+                origins=[
+                    cloudfront.CfnDistribution.OriginProperty(
+                        domain_name=self.bucket.bucket_regional_domain_name,
+                        id=self.bucket.bucket_name,
+                        origin_access_control_id=self.oac.attr_id,
+                        s3_origin_config={},
+                    ),
+                ],
                 default_cache_behavior=cloudfront.CfnDistribution.DefaultCacheBehaviorProperty(
                     cache_policy_id="658327ea-f89d-4fab-a63d-7e88639e58f6", # CachingOptimized  # noqa: E501
                     origin_request_policy_id="88a5eaf4-2fd4-4709-b370-b4c650ea3fcf", # CORS-S3Origin  # noqa: E501

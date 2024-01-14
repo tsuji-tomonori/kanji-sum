@@ -22,7 +22,10 @@ tasks:
       - cdk deploy --all
 
   put-table:
+    env:
+      AWS_REGION: us-east-1
     cmds:
+      - echo $AWS_REGION
       - python batch/create_hiragana_katakana_database.py
       - python batch/put_kanji_data.py "hiragana_katakana_database.csv"
       - python batch/put_kanji_data.py "kanji_database.csv"

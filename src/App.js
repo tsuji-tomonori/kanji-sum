@@ -21,7 +21,7 @@ function App() {
 
   const calculateStrokeCount = () => {
     if (input) {
-      axios.get(`https://kkmmccgnfi.execute-api.ap-northeast-1.amazonaws.com/v1/kanji?tokens=${encodeURIComponent(input)}`)
+      axios.get(`https://f9c20mq7i6.execute-api.us-east-1.amazonaws.com/v1/kanji?tokens=${encodeURIComponent(input)}`)
         .then(response => {
           setKanjiList(response.data.kanji_list);
           setKanjiSum(response.data.kanji_sum);
