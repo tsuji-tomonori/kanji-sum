@@ -31,6 +31,7 @@
     margin-bottom: 0.75rem;
     border-radius: 0.25rem;
     font-size: 1.125rem;
+    box-sizing: border-box;
 }
 
 .button {
